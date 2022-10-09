@@ -43,6 +43,10 @@
 #include "nrf_gpio.h"
 #include "nordic_common.h"
 
+#include <assert.h>
+
+#define ASSERT(x) assert(x)
+
 #if defined(BOARD_NRF6310)
   #include "nrf6310.h"
 #elif defined(BOARD_PCA10000)
