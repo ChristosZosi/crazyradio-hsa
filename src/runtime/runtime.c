@@ -22,31 +22,48 @@
  * SOFTWARE.
  *
  *
- * main.c
+ * runtime.c
  *
- *  Created on: 08.10.2022
+ *  Created on: 09.10.2022
  *      Author: Christos Zosimidis
  */
 
 /* Crazyradio-HSA includes. */
+#include "runtime.h"
+#include "cmdHandler.h"
+#include "arch/sleep.h"
+#include "board/led.h"
 #include "debug/console.h"
-#include "runtime/init.h"
-#include "runtime/runtime.h"
 
-int main(void) {
-	/* Clear the RTT console. */
+/* Standard libraries include. */
+#include <stdbool.h>
+
+static void printRuntime() {
 	DEBUG_CLEAR();
-	DEBUG_PRINT("Starting the Crazyradio-HSA...\r\n");
+	DEBUG_PRINT("######################################################\r\n");
+	DEBUG_PRINT("# Crazyradio-HSA Runtime                         #####\r\n");
+	DEBUG_PRINT("# University of Applied sciences Augsburg        #####\r\n");
+	DEBUG_PRINT("# Professor Dr.-Ing Klaus Kefferpuetz            #####\r\n");
+	DEBUG_PRINT("# Developers                                     #####\r\n");
+	DEBUG_PRINT("# **********                                     #####\r\n");
+	DEBUG_PRINT("# Christos Zosimidis                             #####\r\n");
+	DEBUG_PRINT("# Thomas Izycki                                  #####\r\n");
+	DEBUG_PRINT("######################################################\r\n\n");
+	handleCommand("help");
+}
 
-	/* Initialize the hardware platform. */
-	initPlatform();
+void startRuntime() {
+	printRuntime();
+	ledON(RUNTIME_LED);
 
-	/* Start the Crazyradio-HSA runtime. */
-	startRuntime();
+	while(true) {
 
-	/* Endless loop. */
-	for(;;) {
-		// Should never reach.
+		/* Read a command from the debug console. */
+		const char* consoleInput = getDebugConsoleInput();
+		if(consoleInput != NULL) {
+			handleCommand(consoleInput);
+		}
+
+		sleepms(500); // TODO: Remove this line
 	}
-
 }
