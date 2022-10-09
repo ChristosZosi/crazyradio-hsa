@@ -22,26 +22,39 @@
  * SOFTWARE.
  *
  *
- * main.c
+ * init.c
  *
- *  Created on: 08.10.2022
+ *  Created on: 09.10.2022
  *      Author: Christos Zosimidis
  */
 
-
 /* Crazyradio-HSA includes. */
-#include "debug/console.h"
-#include "runtime/init.h"
+#include "init.h"
+#include "board/led.h"
+#include "board/button.h"
 
-int main(void) {
-	/* Clear the RTT console. */
-	DEBUG_CLEAR();
-	DEBUG_PRINT("Starting the Crazyradio-HSA...\r\n");
+/* Nordic Semiconductor include. */
+#include <nrf.h>
 
-	/* Initialize the hardware platform. */
-	initPlatform();
+static void initClock() {
 
-	/* Endless loop. */
-	for(;;);
+	NRF_CLOCK->EVENTS_HFCLKSTARTED = 0UL;
+	NRF_CLOCK->TASKS_HFCLKSTART    = 1UL;
 
+	/* Wait for the external oscillator to start up */
+	while (NRF_CLOCK->EVENTS_HFCLKSTARTED == 0)
+	{
+		// Do nothing.
+	}
+}
+
+bool initPlatform() {
+	/* initialize system clock */
+	initClock();
+
+	/* Initialize all buttons and leds */
+	initButtons();
+	initLeds();
+
+	return true;
 }

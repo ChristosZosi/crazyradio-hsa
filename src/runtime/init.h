@@ -22,26 +22,18 @@
  * SOFTWARE.
  *
  *
- * main.c
+ * init.h
  *
- *  Created on: 08.10.2022
+ *  Created on: 09.10.2022
  *      Author: Christos Zosimidis
  */
 
+#ifndef SRC_RUNTIME_INIT_H_
+#define SRC_RUNTIME_INIT_H_
 
-/* Crazyradio-HSA includes. */
-#include "debug/console.h"
-#include "runtime/init.h"
+/* Standard libraries includes. */
+#include <stdbool.h>
 
-int main(void) {
-	/* Clear the RTT console. */
-	DEBUG_CLEAR();
-	DEBUG_PRINT("Starting the Crazyradio-HSA...\r\n");
+bool initPlatform();
 
-	/* Initialize the hardware platform. */
-	initPlatform();
-
-	/* Endless loop. */
-	for(;;);
-
-}
+#endif /* SRC_RUNTIME_INIT_H_ */
