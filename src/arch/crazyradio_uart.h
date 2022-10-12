@@ -22,43 +22,25 @@
  * SOFTWARE.
  *
  *
- * init.c
+ * uart.h
  *
- *  Created on: 09.10.2022
+ *  Created on: 12.10.2022
  *      Author: Christos Zosimidis
  */
 
-/* Crazyradio-HSA includes. */
-#include "init.h"
-#include "arch/crazyradio_uart.h"
-#include "board/led.h"
-#include "board/button.h"
+#ifndef SRC_ARCH_CRAZYRADIO_UART_H_
+#define SRC_ARCH_CRAZYRADIO_UART_H_
 
-/* Nordic Semiconductor include. */
-#include <nrf.h>
+/* Standard libraries includes. */
+#include <stdint.h>
+#include <stdbool.h>
 
-static void initClock() {
+void initCrazyradioUart();
+void flushCrazyradioUart();
 
-	NRF_CLOCK->EVENTS_HFCLKSTARTED = 0UL;
-	NRF_CLOCK->TASKS_HFCLKSTART    = 1UL;
+void txCrazyradioUart(uint8_t byte);
 
-	/* Wait for the external oscillator to start up */
-	while (NRF_CLOCK->EVENTS_HFCLKSTARTED == 0)
-	{
-		// Do nothing.
-	}
-}
+bool isCrazyradioUartRx();
+uint8_t rxCrazyradioUart();
 
-bool initPlatform() {
-	/* initialize system clock */
-	initClock();
-
-	/* Initialize all buttons and leds */
-	initButtons();
-	initLeds();
-
-	/* Initialize the Crazyradio UART */
-	initCrazyradioUart();
-
-	return true;
-}
+#endif /* SRC_ARCH_CRAZYRADIO_UART_H_ */
