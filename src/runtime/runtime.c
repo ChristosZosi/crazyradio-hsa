@@ -31,6 +31,7 @@
 /* Crazyradio-HSA includes. */
 #include "runtime.h"
 #include "cmdHandler.h"
+#include "syslink.h"
 #include "arch/sleep.h"
 #include "board/led.h"
 #include "debug/console.h"
@@ -56,7 +57,14 @@ void startRuntime() {
 	printRuntime();
 	ledON(RUNTIME_LED);
 
+	static SyslinkPacket syslinkRxPacket;
+
 	while(true) {
+
+		/* Read the Syslink-packet. */
+		if(syslinkReceive(&syslinkRxPacket)) {
+			// TODO: Handle the Syslink-packet from the cflib
+		}
 
 		/* Read a command from the debug console. */
 		const char* consoleInput = getDebugConsoleInput();
