@@ -1,0 +1,7 @@
+rwildcard=$(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
+
+SRC_TO_RM := $(call rwildcard,src,*.d *.o)
+
+softclean:
+	-$(RM) $(SRC_TO_RM)$(SECONDARY_FLASH)$(SECONDARY_SIZE) crazyradio-hsa-nRF51822.elf crazyradio-hsa-nRF51822.map
+	-@echo ' '
