@@ -1,3 +1,6 @@
 [submodule "libs/nrfx"]
 	path = libs/nrfx
 	url = https://github.com/NordicSemiconductor/nrfx.git
+[submodule "libs/CrazeT"]
+	path = libs/CrazeT
+	url = https://github.com/ChristosZosi/CrazeT.git
