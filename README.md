@@ -1,6 +1,6 @@
 # Crazyradio-HSA
 
-The Crazyradio-HSA is project created to take the role of the [Crazyradio PA](https://www.bitcraze.io/products/crazyradio-pa/) from [Bitcraze AB](https://www.bitcraze.io/) for decentralized communication with the [Crazyflies 2.1](https://www.bitcraze.io/products/crazyflie-2-1/).
+The Crazyradio-HSA is a project created to take the role of the [Crazyradio PA](https://www.bitcraze.io/products/crazyradio-pa/) from [Bitcraze AB](https://www.bitcraze.io/) for decentralized communication with the [Crazyflies 2.1](https://www.bitcraze.io/products/crazyflie-2-1/).
 
 It has its origins in the [Cooperative Control Lab](https://www.hs-augsburg.de/en/Mechanical-and-Process-Engineering/Cooperative-Control-Lab/Cooperative-Control-Lab-3.html) of the [University of Applied Sciences Augsburg](https://www.hs-augsburg.de/en/). There it was first designed for a swarm of Crazyflies to be able to communicate with each other and also with a base station, so they can plan their respective paths to an arbitrary position in cooperation with each other.
 
@@ -15,7 +15,7 @@ It features:
 
 # Crazyradio-HSA firmware
 
-In this repository are the source code and the project configurations of the firmware. The Crazyradio-HSA uses the [nrfx](https://github.com/NordicSemiconductor/nrfx) library for deploying and configuring the hardware of the nRF5-Series SoCs. I choose deliberately to use the nrfx-library instead of the [nRF5 SDK](https://www.nordicsemi.com/Products/Development-software/nrf5-sdk), as one would expect, because it is simpler to work with and it is not as bloated as the SDK. Although, I added manually some required sources from the SDK.
+This repository contains the source code and the project configurations of the firmware. The Crazyradio-HSA uses the [nrfx](https://github.com/NordicSemiconductor/nrfx) library for deploying and configuring the hardware of the nRF5-Series SoCs. I choose deliberately to use the nrfx-library instead of the [nRF5 SDK](https://www.nordicsemi.com/Products/Development-software/nrf5-sdk), as one otherwise would expect, because it is simpler to work with and it is not as bloated as the SDK. Although, I added manually some required sources from the SDK.
 
 ## Sources structure
 
@@ -24,7 +24,7 @@ In this repository are the source code and the project configurations of the fir
 ├───crazyradio-hsa-nRF52840  eclipse project of the Crazyradio-HSA for nRF52840
 ├───libs                     library sources
 │   ├───boards                 DK board specific sources
-|   ├───CrazeT                 source code of the CrazeT protocol (to be added)
+|   ├───CrazeT                 source code of the CrazeT protocol
 │   ├───nrfx                   nrfx library
 │   ├───SEGGER_RTT             SEGGER_RTT sources
 │   └───toolchain              toolchain sources
